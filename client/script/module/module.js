@@ -1,1 +1,0 @@
-var app_ex15 = angular.module('app_ex15', ['ngRoute']);
