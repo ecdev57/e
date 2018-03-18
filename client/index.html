@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Test AngularJS</title>
+<script src="./lib/angular/angular.min.js"></script>
+</head>
+<body >
+<article ng-app="myApp">
+	<section>
+		<header>
+			<h1 ng-controller="monControlex1">{{maVariable}}</h1>
+		</header>
+		<div ng-controller="monControlex2">
+			<p>Votre id et le {{ListeMaFiche.id}}</p>			
+			<p>Votre  nom : {{ListeMaFiche.nom}}</p>
+			<p>Votre prenom est {{ListeMaFiche.prenom}} ({{ListeMaFiche.autrePrenom}})</p>
+			<p>Vou êtes née le : {{ListeMaFiche.dateNaissance}}</p>
+		</div>
+		<div ng-controller="monControlex3">
+			<p ng-repeat="frs in ListeFruits"> {{frs}}</p>
+		</div>
+		<div ng-controller="monControlex3bis">
+			<ul>
+				<li ng-repeat="lusrs in ListeUsers">Fiche n° {{lusrs.id}}<br>Nom : {{lusrs.nom}}<br>Prénom : {{lusrs.prenom}}<br>Née le :{{lusrs.dateNaissance}}</li>
+			</ul>
+		</div>
+	</section>
+</article>
+<script type="text/javascript">
+	var app = angular.module("myApp", []);
+	app.controller("monControlex1",  ["$scope", function($scope) {
+	    $scope.maVariable = "Hello world";
+	}]);
+	//fiche object
+	let maFiche ={
+		id: "777",
+		nom:"ciano",
+		prenom: "enzo",
+		autrePrenom: "Joseph",
+		dateNaissance:"10/10/1991"
+	}
+	app.controller("monControlex2",  ["$scope", function($scope) {
+	    $scope.ListeMaFiche = maFiche;
+	}]);
+	//ng-repeat
+	app.controller("monControlex3",  ["$scope", function($scope) {
+	    $scope.ListeFruits = ["Banane","Pomme", "ananas", "pêche", "fraise"];
+	}]);
+	app.controller("monControlex3bis",  ["$scope", function($scope) {
+	    $scope.ListeUsers = [
+		    {
+		    	id : "7845",
+				nom :"Durand",
+				prenom :"Jean-Pierre",
+				dateNaissance :"17/08/1967"
+			},
+			{
+				id : "6578",
+				nom :"Dupond",
+				prenom :"Gérard",
+				dateNaissance :"23/04/1984"
+			},
+			{
+				id : "9876",
+				nom :"Robert",
+				prenom :"Gabriel",
+				dateNaissance :"21/02/1991"
+			}
+		];
+	}]);
+	
+</script>
+</body>
+</html>
